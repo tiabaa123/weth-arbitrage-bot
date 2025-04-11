@@ -1,11 +1,10 @@
+const { run } = require("hardhat");
 async function main() {
-  const hre = require("hardhat");
-  await hre.run("verify:verify", {
-    address: "0xYourContractAddress",
-    constructorArguments: [
-      "0xYourAaveProvider",
-      "10000000000000000"
-    ]
+  const address = process.env.CONTRACT_ADDRESS;
+  const args = [process.env.FLASHLOAN_PROVIDER, process.env.MIN_PROFIT_WEI];
+  await run("verify:verify", {
+    address,
+    constructorArguments: args
   });
 }
-main();
+main().catch(console.error);
