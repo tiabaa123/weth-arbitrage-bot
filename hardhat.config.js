@@ -1,12 +1,14 @@
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
 require("dotenv").config();
 
 module.exports = {
   solidity: "0.8.20",
   networks: {
-    arbitrum: {
-      url: process.env.ARBITRUM_RPC_1,
-      accounts: [process.env.PRIVATE_KEY]
+    hardhat: {
+      forking: {
+        url: process.env.ALCHEMY_MAINNET_RPC,
+      }
     }
   },
   etherscan: {
